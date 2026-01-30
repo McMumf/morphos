@@ -10,6 +10,8 @@ Morphos Server
 
 __Self-Hosted file converter server.__
 
+Note: This is a continuation of the now archived [danvergara/morphos](https://github.com/danvergara/morphos).
+
 ## Table of contents
 
 - [Overview](#overview)
