@@ -1,0 +1,21 @@
+name: Grype Scan
+
+on:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # Run daily at 2 AM to catch new CVEs
+    - cron: "0 2 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Build the container image
+        run: docker build . --file Dockerfile --tag localbuild/testimage:latest
+      - uses: anchore/scan-action@v6
+        with:
+          image: "localbuild/testimage:latest"
+          fail-build: true
