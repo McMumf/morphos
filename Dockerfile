@@ -1,5 +1,5 @@
 # Build the application from source
-FROM golang:1.25 AS builder
+FROM golang:1.25.6 AS builder
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -20,7 +20,7 @@ COPY . .
 RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o morphos .
 
 # Deploy the application binary into a lean image
-FROM debian:trixie-slim AS release
+FROM debian:trixie-20260112-slim AS release
 
 WORKDIR /
 
